@@ -1,4 +1,4 @@
-#Spotify Track Card
+# Spotify Track Card
 
 This project visualizes data from Spotify songs as the user is listening to them.
 
