@@ -28,6 +28,40 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+      window.onSpotifyWebPlaybackSDKReady = () => {
+        const token = 'BQDgsrhnfbNhOfxRtvi2RFP0cItmqSOH8OSAnRxnzaJrQ38kYUHvITLFCJaI2yVTJ1ZZMzb1zp6NTFEb97N994VjSkiJ0-HuhIgpNcKMkOY3Z_6vFkakYdtIJql4cNfeIJqyMFo7Bm7Pf7pF3sPf4VpnPCUkYL6AKvZy8aE\n';
+        const player = new Spotify.Player({
+          name: "Dillon's Playback",
+          getOAuthToken: cb => { cb(token); }
+        });
+
+        // Error handling
+        player.addListener('initialization_error', ({ message }) => { console.error(message); });
+        player.addListener('authentication_error', ({ message }) => { console.error(message); });
+        player.addListener('account_error', ({ message }) => { console.error(message); });
+        player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+        // Playback status updates
+        player.addListener('player_state_changed', state => {
+          console.log(state);
+        });
+
+        // Ready
+        player.addListener('ready', ({ device_id }) => {
+          console.log('Ready with Device ID', device_id);
+        });
+
+        // Not Ready
+        player.addListener('not_ready', ({ device_id }) => {
+          console.log('Device ID has gone offline', device_id);
+        });
+
+        // Connect to the player!
+        player.connect();
+      };
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
