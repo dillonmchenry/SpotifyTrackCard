@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 // Components
-import SpotifyPlayer from "./SpotifyPlayer";
+import SpotifyPlayer from "./TrackCard";
 
 function App() {
   return (
